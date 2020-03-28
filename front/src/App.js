@@ -1,15 +1,17 @@
 import React from 'react'
-import Carta from './components/carta'
+import { Provider } from 'react-redux'
+import Game from './components/Game'
+import store from './store'
 import './App.css'
 
 function App () {
   return (
+    
+    <Provider store={store}>
     <div className='App'>
-      <Carta numero='1' tipo='h' pos='1' />
-      <Carta numero='q' tipo='d' pos='2' />
-      <Carta numero='4' tipo='c' pos='3' />
-      <Carta numero='10' tipo='s' pos='4' />
+      <Game />
     </div>
+    </Provider>
   )
 }
 

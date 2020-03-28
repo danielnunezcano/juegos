@@ -1,0 +1,5 @@
+.card > .style {
+  position: absolute;
+  height: 14vh;
+  width: 14vw;
+}

@@ -1,0 +1,1 @@
+export const SHUFFLE_CARDS= 'SHUFFLE_CARDS'
