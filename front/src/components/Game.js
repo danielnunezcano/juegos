@@ -22,14 +22,14 @@ const Game = props => {
 
       {!props.cards.stop
         ? props.cards.deckGame.map (card => (
-            <Card type={card} left={contCard++ * 70} top={0} />
+            <Card type={card} left={contCard++ * 10} top={10} />
           ))
         : <div>
             {props.cards.deckGame.map (card => (
-              <Card type={card} left={contCard++ * 70} top={0} />
+              <Card type={card} left={contCard++ * 10} top={10} />
             ))}
             {props.cards.deckEnemy.map (card => (
-              <Card type={card} left={contCardEnemy++ * 70} top={380} />
+              <Card type={card} left={contCardEnemy++ * 10} top={30} />
             ))}
           </div>}
       {props.cards.points < 7.5 && !props.cards.stop
@@ -39,7 +39,7 @@ const Game = props => {
           </div>
         : <div>
             {props.cards.pointsEnemy <= props.cards.points &&
-              props.cards.pointsEnemy < 7.5 && props.cards.points < 7.5
+              props.cards.pointsEnemy < 7.5 && props.cards.points <= 7.5
               ? <button onClick={() => props.addCardEnemy ()}>
                   Carta Enemigo
                 </button>

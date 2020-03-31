@@ -4,7 +4,7 @@ import './css/card.css'
 const Card = ({ type, left, top }) => {
   return (
     <div className='card'>
-      <div className='style' style={{left: `${left}px`, top: `${top}px`}}>
+      <div className='style' style={{left: `${left}%`, top: `${top}%`}}>
         <img src={`./cards/${type}.svg`} alt='card' />
       </div>
     </div>
