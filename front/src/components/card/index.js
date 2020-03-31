@@ -1,10 +1,10 @@
 import React from 'react'
 import './css/card.css'
 
-const Card = ({ type, pos }) => {
+const Card = ({ type, left, top }) => {
   return (
     <div className='card'>
-      <div className='style' style={{left: `${pos}px`}}>
+      <div className='style' style={{left: `${left}px`, top: `${top}px`}}>
         <img src={`./cards/${type}.svg`} alt='card' />
       </div>
     </div>

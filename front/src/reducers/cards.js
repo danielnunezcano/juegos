@@ -1,8 +1,12 @@
-import { ADD_CARD } from '../actions/types'
+import {ADD_CARD, RESET_DECK, STOP, ADD_CARD_ENEMY} from '../actions/types';
 
 const initialState = {
   cont: 0,
+  points: 0,
   deckGame: [],
+  deckEnemy: [],
+  pointsEnemy: 0,
+  stop: false,
   deck: [
     'h1',
     'h2',
@@ -43,9 +47,9 @@ const initialState = {
     's7',
     'sj',
     'sq',
-    'sk'
-  ]
-}
+    'sk',
+  ],
+};
 
 const cards = (state = initialState, action) => {
   switch (action.type) {
@@ -53,16 +57,55 @@ const cards = (state = initialState, action) => {
       return {
         ...state,
         cont: state.cont + 1,
-        deckGame: [ ...state.deckGame, state.deck[state.cont] ]
-      }
+        deckGame: [...state.deckGame, state.deck[state.cont]],
+        points: state.points +
+          (!isNaN (state.deck[state.cont][1])
+            ? parseInt (state.deck[state.cont][1])
+            : 0.5),
+      };
+    case RESET_DECK:
+      return {
+        ...state,
+        cont: 0,
+        deck: state.deck.sort (function () {
+          return Math.random () - 0.5;
+        }),
+        deckGame: [],
+        deckEnemy: [],
+        points: 0,
+        pointsEnemy: 0,
+        stop: false,
+      };
+    case ADD_CARD_ENEMY:
+      return {
+        ...state,
+        cont: state.cont + 1,
+        stop: true,
+        deckEnemy: [...state.deckEnemy, state.deck[state.cont]],
+        pointsEnemy: state.pointsEnemy +
+          (!isNaN (state.deck[state.cont][1])
+            ? parseInt (state.deck[state.cont][1])
+            : 0.5),
+      };
+    case STOP:
+      return {
+        ...state,
+        cont: state.cont + 1,
+        pointsEnemy: state.pointsEnemy +
+          (!isNaN (state.deck[state.cont][1])
+            ? parseInt (state.deck[state.cont][1])
+            : 0.5),
+        deckEnemy: [...state.deckEnemy, state.deck[state.cont]],
+        stop: true,
+      };
     default:
-        return {
-            ...state,
-            deck: state.deck.sort(function () {
-              return Math.random() - 0.5
-            })
-          }
+      return {
+        ...state,
+        deck: state.deck.sort (function () {
+          return Math.random () - 0.5;
+        }),
+      };
   }
-}
+};
 
-export default cards
+export default cards;
