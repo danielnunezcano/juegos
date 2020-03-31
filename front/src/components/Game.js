@@ -1,29 +1,31 @@
-import React from 'react'
-import Carta from './card'
-import { connect } from 'react-redux'
-import './css/game.css'
+import React from 'react';
+import Card from './card';
+import { addCard } from '../actions/cards'
+import {connect} from 'react-redux';
+import './css/game.css';
 
-let cont = -70;
 
-class Game extends React.Component {
-  componentDidMount () {
-  }
 
-  renderGame () {
-    const { cards } = this.props
-    return <div className='game'>
-    {cards.deck.map(c => {
-      return <Carta type={c} pos={cont=cont+70} />})
-  }
-  </div>
-  }
-  render () {
-    return this.renderGame()
-  }
-}
+const Game = (props) => {
+  let contCard = 0;
+  return (
+    <div>
+      <button onClick={() => props.addCard()}>Coger Carta</button>
+      {
+        props.cards.deckGame.map(card => {
+          return <Card type={card} pos={contCard++ * 70} />
+        })
+      }        
+    </div>
+  )
+};
 
 const mapStateToProps = state => ({
-  ...state
+  ...state,
+});
+
+const mapDispatchToProps = dispatch => ({
+  addCard: () => dispatch(addCard())
 })
 
-export default connect(mapStateToProps)(Game)
+export default connect (mapStateToProps, mapDispatchToProps) (Game);

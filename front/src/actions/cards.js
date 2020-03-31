@@ -1,5 +1,5 @@
-import { SHUFFLE_CARDS } from './types'
+import { ADD_CARD } from './types'
 
-export const shuffleCards = () => ({
-  type: SHUFFLE_CARDS
+export const addCard = () => ({
+  type: ADD_CARD
 })

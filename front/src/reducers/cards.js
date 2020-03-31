@@ -1,6 +1,8 @@
-import { SHUFFLE_CARDS } from '../actions/types'
+import { ADD_CARD } from '../actions/types'
 
 const initialState = {
+  cont: 0,
+  deckGame: [],
   deck: [
     'h1',
     'h2',
@@ -47,12 +49,11 @@ const initialState = {
 
 const cards = (state = initialState, action) => {
   switch (action.type) {
-    case SHUFFLE_CARDS:
+    case ADD_CARD:
       return {
         ...state,
-        deck: state.deck.sort(function () {
-          return Math.random() - 0.5
-        })
+        cont: state.cont + 1,
+        deckGame: [ ...state.deckGame, state.deck[state.cont] ]
       }
     default:
         return {

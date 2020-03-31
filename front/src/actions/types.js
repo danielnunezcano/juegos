@@ -1,1 +1,1 @@
-export const SHUFFLE_CARDS= 'SHUFFLE_CARDS'
+export const ADD_CARD= 'ADD_CARD'
