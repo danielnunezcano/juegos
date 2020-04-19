@@ -3,3 +3,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.botonimagen{
+  background-repeat:no-repeat;
+  height:100px;
+  width:100px;
+  background-position:center;
+}
