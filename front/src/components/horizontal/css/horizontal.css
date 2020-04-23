@@ -1,0 +1,17 @@
+.horizontal {
+  display: flex;
+  justify-content: right;
+  height: 50px;
+  width: 100%;
+  background-color: #111;
+  text-align: right;
+  color: white;
+}
+
+.horizontal > .button {
+  cursor: pointer;
+}
+
+.horizontal > .resultado {
+  padding: 5px;
+} 

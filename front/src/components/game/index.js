@@ -1,12 +1,8 @@
 import React from "react";
-import Card from "../card";
-import {
-  addCard,
-  resetDeck,
-  stop,
-  addCardEnemy,
-} from "../../actions/cards";
 import { connect } from "react-redux";
+import FinishScore from "./FinishScore";
+import Card from "../card";
+import { addCard, resetDeck, stop, addCardEnemy } from "../../actions/cards";
 import "./css/game.css";
 
 let interval = (props) => setInterval(props.addCardEnemy(), 1000);
@@ -19,41 +15,27 @@ const Game = (props) => {
 
   return (
     <div>
-      {(props.cards.stop &&
-        props.cards.pointsEnemy > props.cards.points &&
-        props.cards.pointsEnemy <= 7.5) ||
-      props.cards.points > 7.5 ? (
-        <div>Ganador Enemigo</div>
-      ) : props.cards.stop && props.cards.pointsEnemy > 7.5 ? (
-        <div>Has Ganado</div>
-      ) : props.cards.pointsEnemy === props.cards.points &&
-        props.cards.pointsEnemy === 7.5 ? (
-        <div>Empate</div>
-      ) : (
-        <div>
-        </div>
-      )}
-
+      <FinishScore props={props} />
       {!props.cards.stop ? (
         props.cards.deckGame.map((card) => (
-          <Card type={card} left={leftDist()} top={5} />
+          <Card type={card} left={leftDist()} top={50} />
         ))
       ) : (
         <div>
           {props.cards.deckGame.map((card) => (
-            <Card type={card} left={leftDist()} top={5} />
+            <Card type={card} left={leftDist()} top={50} />
           ))}
           {props.cards.deckEnemy.map((card) => (
-            <Card type={card} left={leftDistEnemy()} top={25} />
+            <Card type={card} left={leftDistEnemy()} top={200} />
           ))}
         </div>
       )}
+
       {props.cards.points < 7.5 && !props.cards.stop ? (
         <div>
           <div onClick={() => props.addCard()}>
-            <Card type={"bc"} left={leftDist()} top={5} />
+            <Card type={"bc"} left={leftDist()} top={50} />
           </div>
-          <button onClick={() => props.stop()}>Plantarse</button>
         </div>
       ) : (
         <div>
@@ -62,7 +44,6 @@ const Game = (props) => {
           props.cards.points > 7.5 ? (
             <div>
               {clearInterval(interval)}
-              <button onClick={() => props.resetDeck()}>Resetear</button>
             </div>
           ) : (
             interval(props)

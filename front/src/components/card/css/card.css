@@ -1,7 +1,5 @@
 .card > .style {
   position: absolute;
-  height: 14vh;
   width: 14vw;
-  margin-left: 165px;
-  margin-top: 50px;
+  cursor: pointer;
 }
